@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import classNames from "classnames";
 
 const MESSAGES = [
-  { id: 0, author: "Title", message: "dolor sit amet, consect" },
+  { id: 0, author: "Title", message: "dolor sit amet, consect, dolor sit amet, consect, dolor sit amet, consect, dolor sit amet, consect" },
 ];
 
 const MESSAGE_DELETE_ANIMATION = { height: 0, opacity: 0 };
@@ -49,7 +50,9 @@ const App = () => {
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={(_, info) => handleDragEnd(info)}
-                className="relative flex items-center bg-gray-900 hover:cursor-pointer"
+                className={classNames("relative flex items-center bg-gray-900 hover:cursor-pointer", {
+                  'right-[160px]': showActions,
+                })}
                 onDrag={(_, info) => handleDrag(info)}
               >
                 <div className="message-text flex-1 ml-3 py-2">
@@ -60,10 +63,10 @@ const App = () => {
               {
                 showActions &&               (
                   <div className="absolute h-full top-1/2 right-0 flex -translate-y-1/2">
-                    <div className=" bg-orange-500 h-full flex flex-col items-center justify-center p-2" onClick={() => setShowActions(false)}>
+                    <div className=" bg-orange-500 h-full flex flex-col items-center justify-center p-2 w-[80px]" onClick={() => setShowActions(false)}>
                       Cancel
                     </div>
-                    <div className="bg-red-500 h-full flex flex-col items-center justify-center p-2" onClick={() => setShowActions(false)}>
+                    <div className="bg-red-500 h-full flex flex-col items-center justify-center p-2 w-[80px]" onClick={() => setShowActions(false)}>
                       Delete
                     </div>
                   </div>
